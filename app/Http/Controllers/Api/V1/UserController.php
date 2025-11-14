@@ -5,12 +5,12 @@ namespace App\Http\Controllers\Api\V1;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\StoreUserRequest;
 use App\Http\Requests\UpdateUserRequest;
+use App\Http\Resources\V1\UserResource;
 use App\Models\User;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
 use Illuminate\Support\Facades\Hash;
-use Illuminate\Validation\Rule;
 use Symfony\Component\HttpFoundation\Response as HttpResponse;
 
 class UserController extends Controller
@@ -32,25 +32,27 @@ class UserController extends Controller
             ->orderByDesc('id')
             ->paginate($perPage);
 
-        return response()->json($users);
+        return response()->json(
+            UserResource::collection($users)->response()->getData(true)
+        );
     }
 
     
     public function store(StoreUserRequest $request): JsonResponse
     {
         $data = $request->validated();
-
         $data['password'] = Hash::make($data['password']);
-
         $user = User::create($data);
 
-        return response()->json($user, HttpResponse::HTTP_CREATED); // 201
+        return (new UserResource($user))
+            ->response()
+            ->setStatusCode(HttpResponse::HTTP_CREATED);
     }
 
     
     public function show(User $user): JsonResponse
     {
-        return response()->json($user);
+        return (new UserResource($user))->response();
     }
 
     
@@ -64,7 +66,7 @@ class UserController extends Controller
 
         $user->update($data);
 
-        return response()->json($user);
+        return (new UserResource($user))->response();
     }
 
     

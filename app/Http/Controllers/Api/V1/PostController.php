@@ -5,11 +5,11 @@ namespace App\Http\Controllers\Api\V1;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\StorePostRequest;
 use App\Http\Requests\UpdatePostRequest;
+use App\Http\Resources\V1\PostResource;
 use App\Models\Post;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
-use Illuminate\Validation\Rule;
 use Symfony\Component\HttpFoundation\Response as HttpResponse;
 
 class PostController extends Controller
@@ -35,7 +35,9 @@ class PostController extends Controller
             ->orderByDesc('id')
             ->paginate($perPage);
 
-        return response()->json($posts);
+        return response()->json(
+        PostResource::collection($posts)->response()->getData(true)
+        );
     }
 
 
@@ -54,15 +56,16 @@ class PostController extends Controller
 
         $post->load(['user', 'tags']);
 
-        return response()->json($post, HttpResponse::HTTP_CREATED);
+        return (new PostResource($post))
+            ->response()
+            ->setStatusCode(HttpResponse::HTTP_CREATED);
     }
 
 
     public function show(Post $post): JsonResponse
     {
         $post->load(['user', 'tags']);
-
-        return response()->json($post);
+        return (new PostResource($post))->response();
     }
 
 
@@ -84,15 +87,13 @@ class PostController extends Controller
         }
 
         $post->load(['user', 'tags']);
-
-        return response()->json($post);
+        return (new PostResource($post))->response();
     }
 
 
     public function destroy(Post $post): Response
     {
         $post->delete();
-
         return response()->noContent(); 
     }
 }

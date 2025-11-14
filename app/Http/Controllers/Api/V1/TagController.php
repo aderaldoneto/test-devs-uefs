@@ -5,12 +5,12 @@ namespace App\Http\Controllers\Api\V1;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\StoreTagRequest;
 use App\Http\Requests\UpdateTagRequest;
+use App\Http\Resources\V1\TagResource;
 use App\Models\Tag;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
 use Illuminate\Support\Str;
-use Illuminate\Validation\Rule;
 use Symfony\Component\HttpFoundation\Response as HttpResponse;
 
 class TagController extends Controller
@@ -32,29 +32,32 @@ class TagController extends Controller
             ->orderByDesc('id')
             ->paginate($perPage);
 
-        return response()->json($tags);
+        return response()->json( 
+            TagResource::collection($tags)->response()->getData(true)
+        );
     }
 
 
     public function store(StoreTagRequest $request): JsonResponse
     {
         $data = $request->validated();
-        
+
         if (empty($data['slug'])) {
             $data['slug'] = Str::slug($data['name']);
         }
 
         $tag = Tag::create($data);
 
-        return response()->json($tag, HttpResponse::HTTP_CREATED);
+        return (new TagResource($tag))
+            ->response()
+            ->setStatusCode(HttpResponse::HTTP_CREATED);
     }
 
 
     public function show(Tag $tag): JsonResponse
     {
         $tag->load('posts');
-
-        return response()->json($tag);
+        return (new TagResource($tag))->response();
     }
 
 
@@ -67,15 +70,13 @@ class TagController extends Controller
         }
 
         $tag->update($data);
-
-        return response()->json($tag);
+        return (new TagResource($tag))->response();
     }
 
 
     public function destroy(Tag $tag): Response
     {
         $tag->delete();
-
         return response()->noContent(); 
     }
 }
