@@ -1,98 +1,59 @@
-# Teste Técnico para a vaga de Engenheiro de Software no projeto UEFS - Netra
+<p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400" alt="Laravel Logo"></a></p>
 
-Este desafio técnico é destinado aos candidatos à posição de Engenheiro de Software no projeto UEFS - NETRA. O objetivo é avaliar competências práticas em desenvolvimento de software por meio da criação de uma API RESTful utilizando PHP (Laravel 8 ou superior), um Sistema de Gerenciamento de Banco de Dados (SGBD) de sua escolha, e Docker.
+<p align="center">
+<a href="https://github.com/laravel/framework/actions"><img src="https://github.com/laravel/framework/workflows/tests/badge.svg" alt="Build Status"></a>
+<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/dt/laravel/framework" alt="Total Downloads"></a>
+<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/v/laravel/framework" alt="Latest Stable Version"></a>
+<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/l/laravel/framework" alt="License"></a>
+</p>
 
-O prazo para a realização do teste é de 5 dias corridos, e a entrega deve ser feita por meio de um repositório no GitHub.
+## About Laravel
 
-Para participar, faça um fork deste repositório, aplique a solução proposta e envie para nossa análise.
+Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel takes the pain out of development by easing common tasks used in many web projects, such as:
 
----
+- [Simple, fast routing engine](https://laravel.com/docs/routing).
+- [Powerful dependency injection container](https://laravel.com/docs/container).
+- Multiple back-ends for [session](https://laravel.com/docs/session) and [cache](https://laravel.com/docs/cache) storage.
+- Expressive, intuitive [database ORM](https://laravel.com/docs/eloquent).
+- Database agnostic [schema migrations](https://laravel.com/docs/migrations).
+- [Robust background job processing](https://laravel.com/docs/queues).
+- [Real-time event broadcasting](https://laravel.com/docs/broadcasting).
 
-## Escopo do Teste Técnico
+Laravel is accessible, powerful, and provides tools required for large, robust applications.
 
-Você deverá desenvolver uma API RESTful com as seguintes funcionalidades:
+## Learning Laravel
 
-- CRUD de **Usuários**
-- CRUD de **Posts**
-- CRUD de **Tags**
+Laravel has the most extensive and thorough [documentation](https://laravel.com/docs) and video tutorial library of all modern web application frameworks, making it a breeze to get started with the framework. You can also check out [Laravel Learn](https://laravel.com/learn), where you will be guided through building a modern Laravel application.
 
-### Regras de Relacionamento
+If you don't feel like reading, [Laracasts](https://laracasts.com) can help. Laracasts contains thousands of video tutorials on a range of topics including Laravel, modern PHP, unit testing, and JavaScript. Boost your skills by digging into our comprehensive video library.
 
-- Um **usuário** pode ter várias **postagens**.
-- Uma **postagem** pode conter várias **tags** (palavras-chave).
+## Laravel Sponsors
 
-### Requisitos Técnicos do Projeto
+We would like to extend our thanks to the following sponsors for funding Laravel development. If you are interested in becoming a sponsor, please visit the [Laravel Partners program](https://partners.laravel.com).
 
-- Todas as rotas devem seguir o padrão `/api`, por exemplo: `/api/posts`.
-- Fornecer um `Dockerfile` e `docker-compose.yml` para execução do projeto.
-- Incluir documentação(README) clara sobre como rodar o projeto localmente, como testar os endpoints, visão geral da arquitetura e estrutura do projeto e destaques sobre decisões técnicas e particularidades da implementação.
+### Premium Partners
 
----
+- **[Vehikl](https://vehikl.com)**
+- **[Tighten Co.](https://tighten.co)**
+- **[Kirschbaum Development Group](https://kirschbaumdevelopment.com)**
+- **[64 Robots](https://64robots.com)**
+- **[Curotec](https://www.curotec.com/services/technologies/laravel)**
+- **[DevSquad](https://devsquad.com/hire-laravel-developers)**
+- **[Redberry](https://redberry.international/laravel-development)**
+- **[Active Logic](https://activelogic.com)**
 
-## Avaliação Técnica (durante o **teste prático**)
+## Contributing
 
-Serão avaliados os seguintes pontos conforme o nível de senioridade:
+Thank you for considering contributing to the Laravel framework! The contribution guide can be found in the [Laravel documentation](https://laravel.com/docs/contributions).
 
-### Para Todos os Níveis
+## Code of Conduct
 
-- Conhecimento e uso de recursos do Laravel  
-- Familiaridade com Docker e Docker Compose  
-- Organização, clareza e estrutura do código  
-- Implementação funcional da API RESTful  
-- Utilização adequada do banco de dados escolhido  
+In order to ensure that the Laravel community is welcoming to all, please review and abide by the [Code of Conduct](https://laravel.com/docs/contributions#code-of-conduct).
 
-### Nível Júnior
+## Security Vulnerabilities
 
-- Fundamentos de lógica de programação  
-- Conhecimento básico dos princípios SOLID  
-- Adesão aos padrões PSR (estilo de código PHP)  
-- Uso inicial de testes (PHPUnit ou Pest) — **não obrigatório**  
+If you discover a security vulnerability within Laravel, please send an e-mail to Taylor Otwell via [taylor@laravel.com](mailto:taylor@laravel.com). All security vulnerabilities will be promptly addressed.
 
-### Nível Pleno
+## License
 
-- Lógica de programação mais estruturada  
-- Aplicação consistente dos princípios SOLID  
-- Implementação de testes unitários (PHPUnit ou Pest)  
-- Boas práticas de performance e legibilidade do código  
-
-### Nível Sênior
-
-- Arquitetura bem definida e organização do projeto  
-- Uso estratégico dos princípios SOLID em componentes reutilizáveis  
-- Testes completos (unitários e, se possível, de integração)  
-- Otimizações de performance no código e consultas  
-- Documentação técnica clara e abrangente (API, arquitetura, setup)  
-- Uso de boas práticas de versionamento e estruturação do repositório  
-
----
-
-## Avaliação Complementar (durante a **entrevista técnica**)
-
-Após a entrega e análise do teste prático, os candidatos que avançarem para a próxima etapa participarão de uma entrevista técnica, onde serão avaliados critérios como:
-
-- Clareza na explicação de decisões técnicas  
-- Capacidade de análise e resolução de problemas  
-- Conhecimento sobre arquitetura de software e design de soluções  
-- Abordagem colaborativa e visão de liderança técnica (para cargos mais seniores)  
-- Nível de profundidade em testes, padrões, e boas práticas além do que foi entregue  
-
----
-
-## Recursos Opcionais (recomendados, mas não obrigatórios)
-
-- Documentação automática com Swagger ou Scribe  
-- Interface gráfica simples para consulta dos dados (React, Vue, Blade, Livewire, etc.)  
-
----
-
-## Retorno
-
-Após a análise técnica:
-
-- Se aprovado, entraremos em contato para a entrevista técnica.  
-- Se não aprovado, forneceremos um retorno com os principais pontos de melhoria observados.
-
----
-
-**Boa sorte!**  
-Equipe de Desenvolvimento NETRA – Projeto UEFS
+The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
