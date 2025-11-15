@@ -26,12 +26,14 @@ if (typeof window !== 'undefined') {
     <div class="mx-auto flex max-w-7xl items-center justify-between gap-3 px-4 py-3 sm:py-4">
     <!-- logo -->
     <div class="flex items-center gap-3">
-        <span class="inline-flex h-10 w-10 items-center justify-center rounded-full bg-zinc-800 text-zinc-100 dark:bg-zinc-200 dark:text-zinc-900">
-            <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 24 24" fill="currentColor">
-                <path d="M4 4h16v2H4zM4 7h10v2H4zM4 10h16v2H4zM4 13h10v2H4zM4 16h16v2H4z"/>
-            </svg>
-        </span>
-        <span class="text-xl font-serif font-bold tracking-wide uppercase">{{ appName }}</span>
+        <Link :href="route('welcome')" class="flex items-center gap-2">
+            <span class="inline-flex h-10 w-10 items-center justify-center rounded-full bg-zinc-800 text-zinc-100 dark:bg-zinc-200 dark:text-zinc-900">
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 24 24" fill="currentColor">
+                    <path d="M4 4h16v2H4zM4 7h10v2H4zM4 10h16v2H4zM4 13h10v2H4zM4 16h16v2H4z"/>
+                </svg>
+            </span>
+            <span class="text-xl font-serif font-bold tracking-wide uppercase">{{ appName }}</span>
+        </Link>
     </div>
 
 
