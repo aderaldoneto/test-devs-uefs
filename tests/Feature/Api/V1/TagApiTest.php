@@ -3,12 +3,24 @@
 namespace Tests\Feature\Api\V1;
 
 use App\Models\Tag;
+use App\Models\User;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Tests\TestCase;
 
 class TagApiTest extends TestCase
 {
     use RefreshDatabase;
+
+    protected User $user;
+
+    protected function setUp(): void
+    {
+        parent::setUp();
+
+        $this->user = User::factory()->create();
+        $this->actingAs($this->user); // <--- usuário autenticado para todos os testes deste arquivo
+    }
+
 
     public function test_it_lists_tags_with_pagination_and_search(): void
     {

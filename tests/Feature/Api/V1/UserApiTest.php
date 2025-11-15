@@ -11,6 +11,17 @@ class UserApiTest extends TestCase
 {
     use RefreshDatabase;
 
+    protected User $user;
+
+    protected function setUp(): void
+    {
+        parent::setUp();
+
+        $this->user = User::factory()->create();
+        $this->actingAs($this->user); // <--- usuário autenticado para todos os testes deste arquivo
+    }
+
+
     public function test_it_lists_users_with_pagination_and_search(): void
     {
         User::factory()->create([

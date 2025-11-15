@@ -12,6 +12,17 @@ class PostApiTest extends TestCase
 {
     use RefreshDatabase;
 
+    protected User $user;
+
+    protected function setUp(): void
+    {
+        parent::setUp();
+
+        $this->user = User::factory()->create();
+        $this->actingAs($this->user);
+    }
+
+
     public function test_it_lists_posts_with_pagination_and_relations(): void
     {
         $user = User::factory()->create();
