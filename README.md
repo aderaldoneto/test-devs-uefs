@@ -1,89 +1,63 @@
-# Teste Técnico para a vaga de Engenheiro de Software no projeto UEFS - Netra
+# API Blog – Teste Devs UEFS 
 
-## Escopo do Teste Técnico
+API RESTful construída com **Laravel 11**, **Vue** e **PostgreSQL**, com autenticação, CRUD de usuários, posts e tags, e cobertura de testes de API (Feature Tests). 
 
-Você deverá desenvolver uma API RESTful com as seguintes funcionalidades:
+## Stack 
+PHP 8.3+ 
+Laravel 11 
+PostgreSQL 
+Docker + Laravel Sail 
+PHPUnit (Feature / API tests) 
 
-- CRUD de **Usuários**
-- CRUD de **Posts**
-- CRUD de **Tags**
+## Rodr o projeto 
 
-### Regras de Relacionamento
+git clone https://github.com/aderaldoneto/test-devs-uefs 
+cd test-devs-uefs 
+cp .env.example .env
 
-- Um **usuário** pode ter várias **postagens**.
-- Uma **postagem** pode conter várias **tags** (palavras-chave).
+sail up -d
+sail artisan key:generate
+sail artisan migrate
+sail artisan db:seed
 
-### Requisitos Técnicos do Projeto
+sail npm run dev -- --host
 
-- Todas as rotas devem seguir o padrão `/api`, por exemplo: `/api/posts`.
-- Fornecer um `Dockerfile` e `docker-compose.yml` para execução do projeto.
-- Incluir documentação(README) clara sobre como rodar o projeto localmente, como testar os endpoints, visão geral da arquitetura e estrutura do projeto e destaques sobre decisões técnicas e particularidades da implementação.
+## Seeders
+sail artisan db:seed --class=TagSeeder 
+sail artisan db:seed --class=PostSeeder 
 
----
+## Rota API 
+/Api/V1
 
-## Avaliação Técnica (durante o **teste prático**)
+## Rotas 
 
-Serão avaliados os seguintes pontos conforme o nível de senioridade:
+### Publicas 
+users.index users.show
+posts.index posts.show
+tags.index tags.show
 
-### Para Todos os Níveis
+### Logar 
+http://localhost/api/v1/login 
+{
+  "email": "teste@gmail.com",
+  "password": "password"
+}
 
-- Conhecimento e uso de recursos do Laravel  
-- Familiaridade com Docker e Docker Compose  
-- Organização, clareza e estrutura do código  
-- Implementação funcional da API RESTful  
-- Utilização adequada do banco de dados escolhido  
+Header:
+Authorization: Bearer 1|xxxxxxxxxxxxxxxxx
+Content-Type: application/json
 
-### Nível Júnior
+### Usuários 
+http://localhost/api/v1/users
 
-- Fundamentos de lógica de programação  
-- Conhecimento básico dos princípios SOLID  
-- Adesão aos padrões PSR (estilo de código PHP)  
-- Uso inicial de testes (PHPUnit ou Pest) — **não obrigatório**  
+### Tags 
+http://localhost/api/v1/tags
 
-### Nível Pleno
-
-- Lógica de programação mais estruturada  
-- Aplicação consistente dos princípios SOLID  
-- Implementação de testes unitários (PHPUnit ou Pest)  
-- Boas práticas de performance e legibilidade do código  
-
-### Nível Sênior
-
-- Arquitetura bem definida e organização do projeto  
-- Uso estratégico dos princípios SOLID em componentes reutilizáveis  
-- Testes completos (unitários e, se possível, de integração)  
-- Otimizações de performance no código e consultas  
-- Documentação técnica clara e abrangente (API, arquitetura, setup)  
-- Uso de boas práticas de versionamento e estruturação do repositório  
-
----
-
-## Avaliação Complementar (durante a **entrevista técnica**)
-
-Após a entrega e análise do teste prático, os candidatos que avançarem para a próxima etapa participarão de uma entrevista técnica, onde serão avaliados critérios como:
-
-- Clareza na explicação de decisões técnicas  
-- Capacidade de análise e resolução de problemas  
-- Conhecimento sobre arquitetura de software e design de soluções  
-- Abordagem colaborativa e visão de liderança técnica (para cargos mais seniores)  
-- Nível de profundidade em testes, padrões, e boas práticas além do que foi entregue  
-
----
-
-## Recursos Opcionais (recomendados, mas não obrigatórios)
-
-- Documentação automática com Swagger ou Scribe  
-- Interface gráfica simples para consulta dos dados (React, Vue, Blade, Livewire, etc.)  
-
----
-
-## Retorno
-
-Após a análise técnica:
-
-- Se aprovado, entraremos em contato para a entrevista técnica.  
-- Se não aprovado, forneceremos um retorno com os principais pontos de melhoria observados.
-
----
+### Posts 
+http://localhost/api/v1/posts
 
 
+## Testes 
+sail php artisan test tests/Feature/Api/V1/PostApiTest.php 
+sail php artisan test tests/Feature/Api/V1/TagApiTest.php 
+sail php artisan test tests/Feature/Api/V1/UserApiTest.php 
