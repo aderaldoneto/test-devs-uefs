@@ -60,11 +60,11 @@ sail artisan db:seed --class=PostSeeder
 ## Rotas 
 
 ### Publicas 
-GET /users  
-GET /tags  
-GET /tags/{id}  
-GET /posts  
-GET /posts/{id}  
+GET /api/users  
+GET /api/tags  
+GET /api/tags/{id}  
+GET /api/posts  
+GET /api/posts/{id}  
 
 ### Logar 
 POST /api/v1/login  

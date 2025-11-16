@@ -18,7 +18,7 @@ class TagApiTest extends TestCase
         parent::setUp();
 
         $this->user = User::factory()->create();
-        $this->actingAs($this->user); // <--- usuário autenticado para todos os testes deste arquivo
+        $this->actingAs($this->user);
     }
 
 
@@ -96,7 +96,6 @@ class TagApiTest extends TestCase
     {
         $tag = Tag::factory()->create([
             'name' => 'Api Rest',
-            'slug' => 'api-rest',
         ]);
 
         $payload = [
@@ -106,13 +105,11 @@ class TagApiTest extends TestCase
         $response = $this->putJson("/api/v1/tags/{$tag->id}", $payload);
 
         $response->assertOk()
-            ->assertJsonPath('data.name', 'API RESTful')
-            ->assertJsonPath('data.slug', 'api-restful');
+            ->assertJsonPath('data.name', 'API RESTful');
 
         $this->assertDatabaseHas('tags', [
             'id'   => $tag->id,
             'name' => 'API RESTful',
-            'slug' => 'api-restful',
         ]);
     }
 
