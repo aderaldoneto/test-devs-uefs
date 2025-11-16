@@ -68,9 +68,9 @@ GET /posts/{id}
 
 ### Logar 
 POST /api/v1/login  
-{
-  "email": "teste@gmail.com",
-  "password": "password"
+{  
+  "email": "teste@gmail.com",  
+  "password": "password"  
 }  
 
 Header:  
