@@ -6,7 +6,9 @@ use App\Http\Controllers\Api\V1\PostController;
 use App\Http\Controllers\Api\V1\TagController;
 use App\Http\Controllers\Api\V1\AuthTokenController;
 
-Route::prefix('v1')->group(function () {
+Route::prefix('v1')
+    ->as('api.v1.') 
+    ->group(function () {
 
     Route::post('login', [AuthTokenController::class, 'login']);
 
