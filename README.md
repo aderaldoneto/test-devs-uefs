@@ -1,48 +1,72 @@
 # API Blog – Teste Devs UEFS 
 
-API RESTful construída com **Laravel 12**, **Vue** e **PostgreSQL**, com autenticação, CRUD de usuários, posts e tags, e cobertura de testes de API (Feature Tests). 
+API RESTful construída com **Laravel 12**, **Vue 3 + Inertia.js**, **Vite**, **PostgreSQL** e **Docker**. Com autenticação, CRUD de usuários, posts e tags, e cobertura de testes de API (Feature Tests). 
 
-## Stack 
+# Stack 
+## Back-end
 PHP 8.3.20  
 Laravel 12 (12.38.1) 
 PostgreSQL 
-Docker + Laravel Sail 
-PHPUnit (Feature / API tests) 
+Autenticação com Laravel Breeze + Sanctum  
+Testes de API usando PHPUnit 
+API versionada em `/api/v1` 
 
-## Rodr o projeto 
+## Frontend 
+Vue 3 
+Inertia.js 
+TailwindCSS 
+Vite (build) 
 
+## Infra 
+Dockerfile customizado 
+Docker compose (API + PostgreSQL) 
+Compatível com Laravel Sail (modo dev) 
+
+
+## Rodar o projeto 
+
+# COm Docker
 git clone https://github.com/aderaldoneto/test-devs-uefs 
 cd test-devs-uefs 
-cp .env.example .env
+cp .env.example .env 
 
-(PS: eu uso sail porque criei um alias para não precisar digita './vendor/bin/sail') 
-php artisan sail:install 
-sail up -d 
-sail composer install 
-sail npm install 
-sail npm run build 
-sail artisan key:generate 
-sail artisan migrate 
-sail artisan db:seed 
+docker compose -f compose.netra.yaml up -d --build
+docker compose -f compose.netra.yaml exec app php artisan migrate --seed
 
+# Com Sail (eu costumo usar o Sail)
+(PS: eu uso apenas `sail` porque criei um alias para não precisar digita `./vendor/bin/sail`) 
+composer install
+npm install
+npm run build
+php artisan sail:install
+sail up -d
+sail artisan migrate
+sail artisan db:seed
 sail npm run dev -- --host
 
-## Seeders
+
+## Acessar o projeto
+Web: http://localhost 
+API: http://localhost/api/v1 
+
+## Seeders 
 sail artisan db:seed --class=TagSeeder 
 sail artisan db:seed --class=PostSeeder 
 
 ## Rota API 
-/Api/V1
+/api/v1
 
 ## Rotas 
 
 ### Publicas 
-users.index users.show
-posts.index posts.show
-tags.index tags.show
+GET /users 
+GET /tags 
+GET /tags/{id} 
+GET /posts 
+GET /posts/{id} 
 
 ### Logar 
-http://localhost/api/v1/login 
+POST /api/v1/login 
 {
   "email": "teste@gmail.com",
   "password": "password"
@@ -74,6 +98,10 @@ PUT /api/v1/posts/{id} – Atualizar
 DELETE /api/v1/posts/{id} – Deletar 
 
 ## Testes 
+# Rodar todos os testes 
+sail php artisan test
+
+# Rodar meus testes  
 sail php artisan test tests/Feature/Api/V1/PostApiTest.php 
 sail php artisan test tests/Feature/Api/V1/TagApiTest.php 
 sail php artisan test tests/Feature/Api/V1/UserApiTest.php 
