@@ -27,10 +27,8 @@ const props = defineProps({
   },
 })
 
-// IDs das tags já associadas ao post
 const initialTagIds = (props.post.tags || []).map((t) => t.id)
 
-// useForm com dados iniciais
 const form = useForm({
   title: props.post.title ?? '',
   content: props.post.content ?? '',

@@ -24,7 +24,6 @@ const props = defineProps({
 const page = usePage()
 const isAuthenticated = computed(() => !!page.props.auth?.user)
 
-// Inertia form inicializado com os dados atuais
 const form = useForm({
   name: props.user.name ?? '',
   email: props.user.email ?? '',
@@ -32,7 +31,6 @@ const form = useForm({
   password_confirmation: '',
 })
 
-// flash de sucesso
 const successMessage = computed(() => page.props.flash?.status ?? '')
 
 function submit() {

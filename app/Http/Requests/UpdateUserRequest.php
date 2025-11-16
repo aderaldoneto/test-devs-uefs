@@ -2,6 +2,7 @@
 
 namespace App\Http\Requests;
 
+use App\Models\User;
 use Illuminate\Foundation\Http\FormRequest;
 use Illuminate\Validation\Rule;
 
@@ -21,20 +22,20 @@ class UpdateUserRequest extends FormRequest
      * @return array<string, \Illuminate\Contracts\Validation\ValidationRule|array<mixed>|string>
      */
     public function rules(): array
-    {
+    {   
+        /** @var User|null $user */
         $user = $this->route('user');
         
         return [
-            'name'     => ['sometimes', 'required', 'string', 'max:255'],
+            'name'     => ['sometimes', 'string', 'max:255'],
             'email'    => [
                 'sometimes',
-                'required',
                 'string',
                 'email',
                 'max:255',
-                Rule::unique('users', 'email')->ignore($this->user->id),
+                Rule::unique('users', 'email')->ignore($user?->id),
             ],
-            'password' => ['sometimes', 'required', 'string', 'min:6'],
+            'password' => ['sometimes', 'string', 'min:8'],
         ];
     }
 }

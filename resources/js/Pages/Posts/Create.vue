@@ -24,7 +24,6 @@ const props = defineProps({
 const page = usePage()
 const isAuthenticated = computed(() => !!page.props.auth?.user)
 
-// useForm do Inertia (já vem com errors, processing, etc.)
 const form = useForm({
   title: '',
   content: '',

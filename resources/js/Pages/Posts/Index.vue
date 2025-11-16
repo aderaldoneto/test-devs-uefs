@@ -5,7 +5,6 @@ import AppFooter from '@/Components/AppFooter.vue'
 import { ref } from 'vue'
 import { formatLabel } from '@/Utils/PaginationButton'
 
-
 const appName = usePage().props.app?.name ?? 'Blog API'
 
 const props = defineProps({
@@ -150,7 +149,7 @@ function updateSearch() {
 
             <div v-if="isAuthenticated" class="flex gap-3">
               <Link
-                :href="`/posts/${post.id}/edit`"
+                :href="`/posts/edit/${post.id}`"
                 class="text-sm text-blue-600 hover:underline dark:text-blue-400"
               >
                 Editar

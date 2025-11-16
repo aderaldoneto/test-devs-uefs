@@ -20,7 +20,6 @@ const props = defineProps({
 const page = usePage()
 const isAuthenticated = computed(() => !!page.props.auth?.user)
 
-// Inertia form
 const form = useForm({
   name: '',
   email: '',
@@ -28,7 +27,6 @@ const form = useForm({
   password_confirmation: '',
 })
 
-// flash de sucesso vindo do backend (with('status', ...))
 const successMessage = computed(() => page.props.flash?.status ?? '')
 
 function submit() {
@@ -40,9 +38,7 @@ function submit() {
   form.post(route('users.store'), {
     preserveScroll: true,
     onSuccess: () => {
-      // se quiser limpar o formulário:
       form.reset('name', 'email', 'password', 'password_confirmation')
-      // não precisa dar router.visit, o redirect do backend já levou pra users.index
     },
   })
 }

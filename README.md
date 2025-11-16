@@ -106,3 +106,11 @@ sail php artisan test
 sail php artisan test tests/Feature/Api/V1/PostApiTest.php  
 sail php artisan test tests/Feature/Api/V1/TagApiTest.php  
 sail php artisan test tests/Feature/Api/V1/UserApiTest.php  
+
+## Documentação (Swagger)
+docker compose -f compose.netra.yaml exec app php artisan l5-swagger:generate  
+
+# ULR
+http://localhost/api/documentation  
+
+
