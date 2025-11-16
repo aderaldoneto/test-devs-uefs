@@ -32,6 +32,7 @@ cp .env.example .env
 
 docker compose -f compose.netra.yaml up -d --build
 docker compose -f compose.netra.yaml exec app php artisan migrate --seed
+docker compose -f compose.netra.yaml exec app php artisan test
 
 # Com Sail (eu costumo usar o Sail)
 (PS: eu uso apenas `sail` porque criei um alias para não precisar digita `./vendor/bin/sail`) 
